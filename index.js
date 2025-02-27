@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const cookieParser= require('cookie-parser')
+const cookieParser= require('cookie-parser');
+const UserRouter = require("./routes/UserRouter");
+
 
 const app = express();
 
@@ -11,7 +13,11 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use(cookieParser()); 
 
+
 //router setup
+app.use('/api/v1/user', UserRouter)
+
+//Root-router setup
 app.get("/hello", (req, res) => {
   res.send("hello e-commerce-project");
 });
