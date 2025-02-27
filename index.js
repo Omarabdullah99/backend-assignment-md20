@@ -28,7 +28,7 @@ app.get("/hello", (req, res) => {
 
 
 //mongodb atlas setup
-// password:khalidabdullah1147 hUm6Dh2kJb4IW7eS
+
 const MONGODB_URL =
   "mongodb+srv://khalidabdullah1147:hUm6Dh2kJb4IW7eS@ostad-ass-4-mo-20.xcc66.mongodb.net/?retryWrites=true&w=majority&appName=ostad-ass-4-mo-20";
 

@@ -33,12 +33,12 @@ const Login = async (req, res) => {
     if (!oldUser)
       return res.status(404).json({ message: "User doesn't exist" });
 
-    // পাসওয়ার্ড মেলানো
+   
     const isPasswordValid = await bcrypt.compare(password, oldUser.password);
     if (!isPasswordValid)
       return res.status(400).json({ message: "Invalid password" });
 
-    // User Token Create
+   
     let token = EncodeToken(oldUser.email, oldUser._id);
 
     // Cookies Option

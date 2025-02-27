@@ -56,7 +56,7 @@ const DeleteProfileByUserID = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      message: "Cart item deleted successfully",
+      message: "portfolio deleted successfully",
       data: result,
     });
   } catch (error) {
