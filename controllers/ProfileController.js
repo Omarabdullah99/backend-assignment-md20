@@ -1,18 +1,18 @@
-const ProfileModel = require("../models/ProfileModel");
+const PortfolioModel = require("../models/PortfolioModel");
 const UserModel = require("../models/UserModel");
 
-const CreateAndUpdateProfile = async (req, res) => {
+const CreateAndUpdatePortfolio = async (req, res) => {
   try {
     let user_id = req.headers.user_id;
     let reqBody = req.body;
     reqBody.userID = user_id;
 
     // Check if profile exists
-    let existingProfile = await ProfileModel.findOne({ userID: user_id });
+    let existingProfile = await PortfolioModel.findOne({ userID: user_id });
 
     if (existingProfile) {
       // Update the existing profile
-      let updatedProfile = await ProfileModel.findOneAndUpdate(
+      let updatedProfile = await PortfolioModel.findOneAndUpdate(
         { userID: user_id },
         { $set: reqBody },
         { new: true } // Returns updated document
@@ -24,7 +24,7 @@ const CreateAndUpdateProfile = async (req, res) => {
       });
     } else {
       // Create a new profile
-      let newProfile = new ProfileModel(reqBody);
+      let newProfile = new PortfolioModel(reqBody);
       await newProfile.save();
       res.status(201).json({
         status: "success",
@@ -41,10 +41,10 @@ const CreateAndUpdateProfile = async (req, res) => {
   }
 };
 
-const DeleteProfileByUserID = async (req, res) => {
+const DeletePortfolioByUserID = async (req, res) => {
   try {
     let user_id = req.headers.user_id;
-    let result = await ProfileModel.findOneAndDelete({
+    let result = await PortfolioModel.findOneAndDelete({
       userID: user_id,
     });
 
@@ -64,9 +64,9 @@ const DeleteProfileByUserID = async (req, res) => {
   }
 };
 
-const GetAllProfile = async (req, res) => {
+const GetAllPortfolio = async (req, res) => {
   try {
-    let data = await ProfileModel.find()
+    let data = await PortfolioModel.find()
     res.status(200).json(data)
   } catch (error) {
     return res.status(400).json(error)
@@ -76,4 +76,4 @@ const testProfile = async (req, res) => {
   res.status(200).json({ message: "profile test" });
 };
 
-module.exports = { testProfile, CreateAndUpdateProfile, DeleteProfileByUserID,GetAllProfile };
+module.exports = { testProfile, CreateAndUpdatePortfolio,DeletePortfolioByUserID,  GetAllPortfolio };

@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser= require('cookie-parser');
 const UserRouter = require("./routes/UserRouter");
-const ProfileRouter = require("./routes/ProfileRouter");
+const PortfolioRouter = require("./routes/PortfolioRouter");
 
 
 
@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 //router setup
 app.use('/api/v1/user', UserRouter)
-app.use('/api/v1/profile', ProfileRouter)
+app.use('/api/v1/portfolio', PortfolioRouter)
 
 //Root-router setup
 app.get("/hello", (req, res) => {
